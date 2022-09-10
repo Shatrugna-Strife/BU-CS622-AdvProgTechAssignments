@@ -1,26 +1,27 @@
 package com.met622;
 
 import com.met622.constant.GameConstant;
-import com.met622.model.Building;
-import com.met622.model.Player;
+import com.met622.entity.Buildings;
+import com.met622.entity.GameInstance;
+import com.met622.model.PlayerModel;
 import processing.core.PApplet;
 
 public class Game extends PApplet{
 
-    Player p ;
-    Building b;
-
+    private GameInstance gameInstance;
+    @Override
     public void settings(){
         size(GameConstant.SCREEN_WIDTH, GameConstant.SCREEN_HEIGHT);
-        p = new Player(this, 2,2);
-        b = new Building(this);
+//        this.frameRate(30);
+        gameInstance = new GameInstance(this);
     }
 
+    @Override
     public void draw(){
         background(255);
 //        ellipse(mouseX, mouseY, 100, 50);
-        p.render();
-        b.render();
+        gameInstance.render();
+//        System.out.println(frameRate);
     }
 
     public void mousePressed(){
@@ -30,7 +31,6 @@ public class Game extends PApplet{
     public static void main(String[] args){
         String[] processingArgs = {"Game"};
         Game game = new Game();
-
         PApplet.runSketch(processingArgs, game);
     }
 }
