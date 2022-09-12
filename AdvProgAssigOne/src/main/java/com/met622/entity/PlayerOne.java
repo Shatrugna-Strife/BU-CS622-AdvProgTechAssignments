@@ -26,4 +26,8 @@ public class PlayerOne extends PlayerModel {
         super.render(255, 100, 0);
     }
 
+    @Override
+    public int getDirection() {
+        return 1;
+    }
 }

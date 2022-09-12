@@ -5,6 +5,7 @@ import com.met622.entity.Buildings;
 import com.met622.entity.GameInstance;
 import com.met622.model.PlayerModel;
 import processing.core.PApplet;
+import processing.core.PImage;
 
 public class Game extends PApplet{
 
@@ -14,6 +15,7 @@ public class Game extends PApplet{
         size(GameConstant.SCREEN_WIDTH, GameConstant.SCREEN_HEIGHT);
 //        this.frameRate(30);
         gameInstance = new GameInstance(this);
+        loadImage("");
     }
 
     @Override

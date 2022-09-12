@@ -3,7 +3,7 @@ package com.met622.model;
 import processing.core.PApplet;
 import processing.core.PVector;
 
-public class PlayerModel {
+public abstract class PlayerModel {
     private PApplet game;
 
     protected String state;
@@ -24,5 +24,10 @@ public class PlayerModel {
 
     public PVector getPos(){
         return pos;
+    }
+
+    public abstract int getDirection();
+    public boolean checkCircleCollide(float x, float y, int radius){
+        return Math.abs((x - pos.x) * (x - pos.x) + (y - pos.y) * (y - pos.y)) < (radius + 10) * (radius + 10);
     }
 }

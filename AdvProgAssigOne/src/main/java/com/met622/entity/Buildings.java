@@ -1,5 +1,6 @@
 package com.met622.entity;
 
+import com.met622.constant.GameConstant;
 import com.met622.model.BuildingModel;
 import processing.core.PApplet;
 import processing.core.PVector;
@@ -40,4 +41,11 @@ public class Buildings {
         return buildingModelList;
     }
 
+    public boolean circleCollision(PVector pos) {
+        boolean tmp = false;
+        for(int i = 0; i< buildingModelList.size(); i++){
+            tmp |= GameConstant.physicsFormula.circleRect(pos.x, pos.y, 5,buildingModelList.get(i).getStart().x,buildingModelList.get(i).getStart().y-buildingModelList.get(i).getHeight(),buildingModelList.get(i).getWidth(), buildingModelList.get(i).getHeight());
+        }
+        return tmp;
+    }
 }
