@@ -74,6 +74,11 @@ public class GameInstance {
 
     private boolean bananaThrown = true; //TODO - false default
     private double projectileTimeTemp = 0;
+
+    public SwingGui getSwingGui() {
+        return swingGui;
+    }
+
     private SwingGui swingGui;
 
     public GameInstance(PApplet game){
