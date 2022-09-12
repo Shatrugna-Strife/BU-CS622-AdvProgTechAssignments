@@ -1,16 +1,12 @@
 package com.met622.entity;
 
-import com.met622.Game;
 import com.met622.constant.GameConstant;
 import com.met622.constant.GameEvent;
 import processing.core.PApplet;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
+import java.awt.event.*;
 
 import static java.lang.System.exit;
 
@@ -55,6 +51,45 @@ public class SwingGui implements Runnable {
             public void windowClosing(WindowEvent e) {
                 super.windowClosing(e);
                 exit(0);
+            }
+        });
+
+        angleTextField.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                try{
+                    Integer.parseInt(angleTextField.getText());
+                }catch (NumberFormatException ex){
+                    angleTextField.setText("");
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                try{
+                    Integer.parseInt(angleTextField.getText());
+                }catch (NumberFormatException ex){
+                    angleTextField.setText("Enter Angle");
+                }
+            }
+        });
+        velocityTextField.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                try{
+                    Integer.parseInt(velocityTextField.getText());
+                }catch (NumberFormatException ex){
+                    velocityTextField.setText("");
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                try{
+                    Integer.parseInt(velocityTextField.getText());
+                }catch (NumberFormatException ex){
+                    velocityTextField.setText("Enter Velocity");
+                }
             }
         });
         submitButton.addActionListener(new ActionListener() {

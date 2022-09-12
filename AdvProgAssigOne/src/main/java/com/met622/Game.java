@@ -43,7 +43,7 @@ public class Game extends PApplet{
 
     public void mousePressed(){
         if(!gameInstance.isBananaThrown()){
-            PVector tmpPlayerPos = gameInstance.getBananaModel().getPlayer().getPos();
+            PlayerModel tmpPlayer = gameInstance.getBananaModel().getPlayer();
             PVector tmpBananaPos = gameInstance.getBananaModel().getPos();
             int angle = (int)(Math.atan((Math.abs(mouseY-tmpBananaPos.y))/(Math.abs(mouseX - tmpBananaPos.x)))/0.0174533d);
             int velocity = (int) Math.sqrt(Math.pow(mouseX-tmpBananaPos.x,2)+Math.pow(mouseY-tmpBananaPos.y,2));
