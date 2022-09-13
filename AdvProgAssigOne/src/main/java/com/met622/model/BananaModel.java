@@ -1,5 +1,6 @@
 package com.met622.model;
 
+import com.met622.constant.GameConstant;
 import processing.core.PApplet;
 import processing.core.PVector;
 
@@ -28,28 +29,37 @@ public class BananaModel {
     public void render(){
         game.push();
         game.fill(255,255,0);
-        game.ellipse(pos.x, pos.y, 10,10);
+        game.ellipse(pos.x, pos.y, GameConstant.BANANA_RADIUS*2,GameConstant.BANANA_RADIUS*2);
         game.pop();
     }
 
+    /**
+     * overloaded render method to pass the below parameters
+     * @param timeAfterThrow
+     * @param angle
+     * @param velocity
+     */
     public void render(double timeAfterThrow,int angle, int velocity){
         game.push();
         game.fill(255,255,0);
         projectileUpdate(player, timeAfterThrow,angle, velocity);
-        game.ellipse(pos.x, pos.y, 10,10);
+        game.ellipse(pos.x, pos.y, GameConstant.BANANA_RADIUS*2,GameConstant.BANANA_RADIUS*2);
         game.pop();
     }
 
+    /**
+     * method to update the banana position in the projectile motion trajectory using the below parameters
+     * @param playerModel
+     * @param time
+     * @param angle
+     * @param velocity
+     */
     public void projectileUpdate(PlayerModel playerModel, double time, int angle, int velocity){
-        projectileMotionFormula(time, angle, velocity);
+        projectileMotionTempVector.x = (int)(velocity * Math.cos(angle*0.0174533d) * time);
+        projectileMotionTempVector.y = (int)(velocity * Math.sin(angle*0.0174533d) * time - 0.5 * GameConstant.GRAVITY * (Math.pow(time,2)));
         pos.x = playerModel.getDirection() * projectileMotionTempVector.x + initialPos.x;
-        System.out.println(playerModel.getDirection() +" "+pos.x);
+//        System.out.println(playerModel.getDirection() +" "+pos.x);
         pos.y = initialPos.y - projectileMotionTempVector.y;
-    }
-
-    public void projectileMotionFormula(double time, int angle, int initialVelocity){
-        projectileMotionTempVector.x = (int)(initialVelocity * Math.cos(angle*0.0174533d) * time);
-        projectileMotionTempVector.y = (int)(initialVelocity * Math.sin(angle*0.0174533d) * time - 0.5 * 100 * (Math.pow(time,2)));
     }
 
     public PVector getPos(){

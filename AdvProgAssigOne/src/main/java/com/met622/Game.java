@@ -13,14 +13,21 @@ import processing.core.PVector;
 public class Game extends PApplet{
 
     private GameInstance gameInstance;
+
+    /**
+     * it gets called only once while the loading the instance of the class to the game loop.
+     */
     @Override
     public void settings(){
         size(GameConstant.SCREEN_WIDTH, GameConstant.SCREEN_HEIGHT);
-//        this.frameRate(30);
+//        this.frameRate(30); // it displays a weird null pointer exception
         gameInstance = new GameInstance(this);
-        loadImage("");
     }
 
+    /**
+     * it gets called probably around 60 times per sec.
+     * the drawing and collision detection takes place over here
+     */
     @Override
     public void draw(){
         background(255);
@@ -41,11 +48,14 @@ public class Game extends PApplet{
         this.pop();
     }
 
+    /**
+     * handles the mouse click event.
+     * determines the velocity and angle to throw the banana.
+     */
     public void mousePressed(){
-        if(!gameInstance.isBananaThrown()){
-            PlayerModel tmpPlayer = gameInstance.getBananaModel().getPlayer();
+        if(gameInstance.getBananaModel()!=null&&!gameInstance.isBananaThrown()){
             PVector tmpBananaPos = gameInstance.getBananaModel().getPos();
-            int angle = (int)(Math.atan((Math.abs(mouseY-tmpBananaPos.y))/(Math.abs(mouseX - tmpBananaPos.x)))/0.0174533d);
+            int angle = (int)(Math.atan(Math.abs(mouseY-tmpBananaPos.y)/Math.abs(mouseX - tmpBananaPos.x))/0.0174533d);
             int velocity = (int) Math.sqrt(Math.pow(mouseX-tmpBananaPos.x,2)+Math.pow(mouseY-tmpBananaPos.y,2));
             gameInstance.setVelocity(velocity);
             gameInstance.setAngle(angle);
@@ -56,6 +66,6 @@ public class Game extends PApplet{
     public static void main(String[] args){
         String[] processingArgs = {"Game"};
         Game game = new Game();
-        PApplet.runSketch(processingArgs, game);
+        PApplet.runSketch(processingArgs, game); // loads the game loop
     }
 }

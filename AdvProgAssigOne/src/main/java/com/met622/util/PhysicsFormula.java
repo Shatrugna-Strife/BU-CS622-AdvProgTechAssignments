@@ -12,7 +12,7 @@ public class PhysicsFormula {
         if (circleY < rectY)         testY = rectY;      // top edge
         else if (circleY > rectY+rectHeight) testY = rectY+rectHeight;   // bottom edge
 
-        // get distance from closest edges
+        // get distance from the closest edges
         float distX = circleX-testX;
         float distY = circleY-testY;
         float distance = (float)Math.sqrt( (distX*distX) + (distY*distY) );

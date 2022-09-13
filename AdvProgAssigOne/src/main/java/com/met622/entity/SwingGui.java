@@ -10,9 +10,12 @@ import java.awt.event.*;
 
 import static java.lang.System.exit;
 
+/**
+ *
+ */
 public class SwingGui implements Runnable {
 
-    private JFrame f;
+    private JFrame jFrame;
     public JButton submitButton;
     public TextField angleTextField;
     public TextField velocityTextField;
@@ -25,7 +28,7 @@ public class SwingGui implements Runnable {
     public SwingGui(PApplet game, GameInstance gameInstance) {
         this.game = game;
         this.gameInstance = gameInstance;
-        f = new JFrame("Gorilla Game");
+        jFrame = new JFrame("Gorilla Game");
         submitButton = new JButton("Click Here");
         angleTextField = new TextField("Enter Angle");
         velocityTextField = new TextField("Enter Velocity");
@@ -38,15 +41,15 @@ public class SwingGui implements Runnable {
         velocityTextField.setBounds(110,40,100,30);
         text.setBounds(10,0,300,30);
         submitButton.setBounds(10,80,95,30);
-        f.add(submitButton);
-        f.add(angleTextField);
-        f.add(velocityTextField);
-        f.add(text);
-        f.setSize(350,200);
-        f.setLayout(null);
-        f.setVisible(true);
+        jFrame.add(submitButton);
+        jFrame.add(angleTextField);
+        jFrame.add(velocityTextField);
+        jFrame.add(text);
+        jFrame.setSize(350,200);
+        jFrame.setLayout(null);
+        jFrame.setVisible(true);
 
-        f.addWindowListener(new WindowAdapter() {
+        jFrame.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
                 super.windowClosing(e);

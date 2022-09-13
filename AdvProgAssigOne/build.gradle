@@ -21,7 +21,7 @@ dependencies {
 jar {
     manifest {
         attributes(
-                'Main-Class': 'com.met622.Game'
+            'Main-Class': 'com.met622.Game'
         )
     }
 }
