@@ -8,7 +8,8 @@ Link to download [https://jdk.java.net/18/](https://jdk.java.net/18/)
 
 Command to start the program on Windows machine
 ```
-gradlew.bat build && java -cp .\libs\core.jar;.\build\libs\AdvProgAssigOne-1.0.jar com.met622.Game
+gradlew.bat build   //Build the project
+java -cp .\libs\core.jar;.\build\libs\AdvProgAssigOne-1.0.jar com.met622.Game   //Run the application
 ```
 
 ## Description
