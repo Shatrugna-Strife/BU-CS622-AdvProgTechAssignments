@@ -1,9 +1,11 @@
 ### IDEA ###
 /AdvProgAssigOne/.idea/
+/AdvProgAssigTwo/.idea/
 
 ## gradle ##
 /AdvProgAssigOne/.gradle/
+/AdvProgAssigTwo/.gradle/
 
 ## build ##
 /AdvProgAssigOne/build/
-
+/AdvProgAssigTwo/build/
