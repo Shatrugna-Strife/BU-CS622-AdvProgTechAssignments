@@ -6,7 +6,14 @@ import java.util.List;
 import java.util.Map;
 import static com.met622.singleton.Singleton.date;
 
+/**
+ * Class for storing the query commands.
+ */
 public class History {
+
+    public Map<String, List<Long>> getCommandHistory() {
+        return commandHistory;
+    }
 
     private Map<String, List<Long>> commandHistory;
 

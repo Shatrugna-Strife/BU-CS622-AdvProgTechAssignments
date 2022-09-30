@@ -1,7 +1,11 @@
 package com.met622.model;
 
-import jdk.nashorn.internal.objects.annotations.Getter;
 
+/**
+ * Custom Pair class to store two value together
+ * @param <T>
+ * @param <V>
+ */
 public class Pair <T,V>{
     public T getFirst() {
         return first;

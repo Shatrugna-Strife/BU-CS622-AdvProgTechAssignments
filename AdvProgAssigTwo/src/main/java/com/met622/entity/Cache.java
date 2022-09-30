@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * It is used to store the search results and avoid unnecessary IO read.
+ */
 public class Cache {
     public List<Pair<String, Map<String, Object>>> getCacheData() {
         return cacheData;

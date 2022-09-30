@@ -9,10 +9,19 @@ import java.util.List;
 import java.util.Map;
 import static com.met622.singleton.Singleton.objectMapper;
 import static com.met622.singleton.Singleton.cache;
+import static com.met622.singleton.Singleton.history;
 
 
 public class SearchOperation {
+    /**
+     * Function to handle searching of the data from search keyword.
+     * @param file
+     * @param keyword
+     * @return
+     * @throws IOException
+     */
     public List<Map<String,Object>> searchJsonFileByKeyword(File file, String keyword) throws IOException {
+        history.addCommand(keyword);
         BufferedReader input = null;
         List<Map<String,Object>> result = new ArrayList<>(20);
         try{
@@ -48,17 +57,27 @@ public class SearchOperation {
         }
     }
 
+    /**
+     * extract necessary data from the json data of the file
+     * @param tmpMap
+     * @return
+     */
     private Map<String, Object> extractJSON(Map<String, Object> tmpMap) {
         Map<String,Object> result = new HashMap<>();
         Map<String,Object> temp = (Map)tmpMap.get("data");
         result.put("project_name",(String)temp.get("name"));
-        result.put("funding_amount",(String)temp.get("pledged"));
-        result.put("goal_amount",(String)temp.get("goal"));
+        result.put("funding_amount",temp.get("pledged"));
+        result.put("goal_amount",temp.get("goal"));
         temp = (Map)temp.get("category");
         result.put("category",(String)temp.get("parent_name"));
         return result;
     }
 
+    /**
+     * generates a supplementary string to assists in searching.
+     * @param tmpMap
+     * @param sb
+     */
     private void buildStringData(Map<String, Object> tmpMap, StringBuilder sb) {
         Map<String,Object> temp = (Map)tmpMap.get("data");
         sb.append((String)temp.get("name"));
