@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="561a2c19-fa44-4e61-b195-652effbf69f0" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../AdvProgAssigFive/src/main/java/com/met622/Entity/MongoEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../AdvProgAssigFive/src/main/java/com/met622/Entity/MysqlEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../AdvProgAssigFour/Readme.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../AdvProgAssigFour/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../AdvProgAssigFour/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../AdvProgAssigFour/gradlew" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../AdvProgAssigFour/gradlew.bat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../AdvProgAssigThree/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../AdvProgAssigThree/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../AdvProgAssigThree/gradlew" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../AdvProgAssigThree/gradlew.bat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../AdvProgAssigThree/src/main/java/com/met622/Entity/ControlClass.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../AdvProgAssigThree/src/main/java/com/met622/Entity/MultipleLinesChart.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../AdvProgAssigThree/src/main/java/com/met622/constant/Constant.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../AdvProgAssigThree/src/main/java/com/met622/lucene/LuceneReader.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../AdvProgAssigThree/src/main/java/com/met622/lucene/LuceneWriter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../AdvProgAssigThree/src/main/java/com/met622/model/Pair.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../AdvProgAssigThree/src/main/java/com/met622/singleton/Singleton.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../AdvProgAssigThree/src/main/java/com/met622/util/ParserUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../AdvProgAssigThree/src/main/resources/dblp.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2IVaAzV6XKk2erfIsWGqabgdZ1v" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="561a2c19-fa44-4e61-b195-652effbf69f0" name="Changes" comment="" />
+      <created>1670269066155</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1670269066155</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

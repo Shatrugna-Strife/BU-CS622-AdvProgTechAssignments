@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html>
+  <style>
+    body{
+      position: relative;
+    }
+    .loader {
+      display:none;
+      position:fixed;
+      top:calc(50vh - 60px);
+      left:calc(50vw - 60px);
+      border: 16px solid #f3f3f3; /* Light grey */
+      border-top: 16px solid #3498db; /* Blue */
+      border-radius: 50%;
+      width: 120px;
+      height: 120px;
+      animation: spin 2s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
+  <body>
+    <div class="loader"></div>
+    <h2>Search</h2>
+    <input type="text" id="searchText">
+    <button id="searchButton">Get Links</button>
+
+    <h1>Youtube</h1>
+    <p>
+      <select id="youtubeLinkDropDown">
+      </select>
+      <button id="youtubeVideoGenerateButton">Generate Scenes</button>
+    </p>
+    <p>
+      <select id="youtubeSceneDropDown">
+      </select>
+      <button id="youtubeVideoGetButton">Get Video</button>
+    </p>
+    <p id="youtubeVideoSection"></p>
+
+    <h1>Instagram</h1>
+    <p>
+      <select id="instagramLinkDropDown">
+      </select>
+      <button id="instagramVideoGenerateButton">Generate Scenes</button>
+    </p>
+    <p>
+      <select id="instagramSceneDropDown">
+      </select>
+      <button id="instagramVideoGetButton">Get Video</button>
+    </p>
+    <p id="instagramVideoSection"></p>
+
+    <h1>TikTok</h1>
+    <p>
+      <select id="tiktokLinkDropDown">
+      </select>
+      <button id="tiktokVideoGenerateButton">Generate Scenes</button>
+    </p>
+    <p>
+      <select id="tiktokSceneDropDown">
+      </select>
+      <button id="tiktokVideoGetButton">Get Video</button>
+    </p>
+    <p id="tiktokVideoSection"></p>
+
+
+    <script>
+
+      document.addEventListener("DOMContentLoaded",()=>{
+
+        let button = document.getElementsByTagName("button")
+        let loader = document.getElementsByClassName("loader")[0]
+
+        document.addEventListener("mousemove",(e)=>{
+          // console.log(e.screenX,)
+          loader.style.left = `calc(${e.screenX}px - 70px)`
+          loader.style.top = `calc(${e.screenY}px - 180px)`
+        })
+
+        document.getElementById("searchButton").addEventListener("click",async ()=>{
+          let t = document.getElementById("searchText").value;
+          if(t!=""){
+
+            loader.style.display = "block"
+            for(let i = 0;i<button.length;i++){
+              button[i].disabled = true
+            }
+            try{
+              document.getElementById("youtubeLinkDropDown").innerHTML = ""
+              document.getElementById("youtubeSceneDropDown").innerHTML = ""
+              document.getElementById("youtubeVideoSection").innerHTML = ""
+              document.getElementById("instagramLinkDropDown").innerHTML = ""
+              document.getElementById("instagramSceneDropDown").innerHTML = ""
+              document.getElementById("instagramVideoSection").innerHTML = ""
+              document.getElementById("tiktokLinkDropDown").innerHTML = ""
+              document.getElementById("tiktokSceneDropDown").innerHTML = ""
+              document.getElementById("tiktokVideoSection").innerHTML = ""
+
+
+              let headersList = {
+                "Accept": "*/*",
+                "User-Agent": "Thunder Client (https://www.thunderclient.com)",
+                "Content-Type": "application/json"
+              }
+
+              let bodyContent = JSON.stringify({
+                "keyword":t
+              });
+
+              let response = await fetch("{{url_for('post_get_youtube_links')}}", { 
+                method: "POST",
+                body: bodyContent,
+                headers: headersList
+              });
+
+              let data = await response.json();
+              console.log(data)
+
+              
+
+              for (let i=0;i<data["data"].length;i++) {
+                let option = document.createElement("option");
+                option.setAttribute('value', data["data"][i]);
+                // console.log(data["data"][i])
+
+                let optionText = document.createTextNode(data["data"][i]);
+                option.appendChild(optionText);
+
+                document.getElementById("youtubeLinkDropDown").appendChild(option);
+              }
+
+
+
+              response = await fetch("{{url_for('post_get_instagram_links')}}", { 
+                method: "POST",
+                body: bodyContent,
+                headers: headersList
+              });
+
+              data = await response.json();
+              console.log(data)
+
+              
+
+              for (let i=0;i<data["data"].length;i++) {
+                let option = document.createElement("option");
+                option.setAttribute('value', data["data"][i]);
+                // console.log(data["data"][i])
+
+                let optionText = document.createTextNode(data["data"][i]);
+                option.appendChild(optionText);
+
+                document.getElementById("instagramLinkDropDown").appendChild(option);
+              }
+
+              response = await fetch("{{url_for('post_get_tiktok_links')}}", { 
+                method: "POST",
+                body: bodyContent,
+                headers: headersList
+              });
+
+              data = await response.json();
+              console.log(data)
+
+              
+
+              for (let i=0;i<data["data"].length;i++) {
+                let option = document.createElement("option");
+                option.setAttribute('value', data["data"][i]);
+                // console.log(data["data"][i])
+
+                let optionText = document.createTextNode(data["data"][i]);
+                option.appendChild(optionText);
+
+                document.getElementById("tiktokLinkDropDown").appendChild(option);
+              }
+            }catch(e){
+
+            }
+            
+
+            loader.style.display = "none"
+            for(let i = 0;i<button.length;i++){
+              button[i].disabled = false
+            }
+
+
+          }
+        });
+
+
+        document.getElementById("youtubeVideoGenerateButton").addEventListener("click",async ()=>{
+          let t = document.getElementById("youtubeLinkDropDown").value
+
+          if(t!=undefined && t!=""){
+
+            loader.style.display = "block"
+            for(let i = 0;i<button.length;i++){
+              button[i].disabled = true
+            }
+
+            try{
+              document.getElementById("youtubeSceneDropDown").innerHTML = ""
+              document.getElementById("youtubeVideoSection").innerHTML = ""
+              
+
+              let headersList = {
+                "Accept": "*/*",
+                "User-Agent": "Thunder Client (https://www.thunderclient.com)",
+                "Content-Type": "application/json"
+              }
+
+              let bodyContent = JSON.stringify({
+                "link":t
+              });
+
+              let response = await fetch("{{url_for('post_get_youtube_video')}}", { 
+                method: "POST",
+                body: bodyContent,
+                headers: headersList
+              });
+
+              let data = await response.json();
+              console.log(data);
+
+              for (let i=0;i<data["data"].length;i++) {
+                let option = document.createElement("option");
+                option.setAttribute('value', data["data"][i]);
+                // console.log(data["data"][i])
+
+                let optionText = document.createTextNode(data["data"][i]);
+                option.appendChild(optionText);
+
+                document.getElementById("youtubeSceneDropDown").appendChild(option);
+              }
+            }catch(e){
+
+            }
+
+            loader.style.display = "none"
+            for(let i = 0;i<button.length;i++){
+              button[i].disabled = false
+            }
+          }
+        });
+
+        document.getElementById("instagramVideoGenerateButton").addEventListener("click",async ()=>{
+          let t = document.getElementById("instagramLinkDropDown").value
+
+          if(t!=undefined && t!=""){
+
+            loader.style.display = "block"
+            for(let i = 0;i<button.length;i++){
+              button[i].disabled = true
+            }
+
+            try{
+              document.getElementById("instagramSceneDropDown").innerHTML = ""
+              document.getElementById("instagramVideoSection").innerHTML = ""
+
+              let headersList = {
+                "Accept": "*/*",
+                "User-Agent": "Thunder Client (https://www.thunderclient.com)",
+                "Content-Type": "application/json"
+              }
+
+              let bodyContent = JSON.stringify({
+                "link":t
+              });
+
+              let response = await fetch("{{url_for('post_get_instagram_video')}}", { 
+                method: "POST",
+                body: bodyContent,
+                headers: headersList
+              });
+
+              let data = await response.json();
+              console.log(data);
+
+              for (let i=0;i<data["data"].length;i++) {
+                let option = document.createElement("option");
+                option.setAttribute('value', data["data"][i]);
+                // console.log(data["data"][i])
+
+                let optionText = document.createTextNode(data["data"][i]);
+                option.appendChild(optionText);
+
+                document.getElementById("instagramSceneDropDown").appendChild(option);
+              }
+            }catch(e){
+
+            }
+
+            loader.style.display = "none"
+            for(let i = 0;i<button.length;i++){
+              button[i].disabled = false
+            }
+          }
+        });
+
+        document.getElementById("tiktokVideoGenerateButton").addEventListener("click",async ()=>{
+          let t = document.getElementById("tiktokLinkDropDown").value
+
+          if(t!=undefined && t!=""){
+
+            loader.style.display = "block"
+            for(let i = 0;i<button.length;i++){
+              button[i].disabled = true
+            }
+
+            try{
+              document.getElementById("tiktokSceneDropDown").innerHTML = ""
+              document.getElementById("tiktokVideoSection").innerHTML = ""
+
+              let headersList = {
+                "Accept": "*/*",
+                "User-Agent": "Thunder Client (https://www.thunderclient.com)",
+                "Content-Type": "application/json"
+              }
+
+              let bodyContent = JSON.stringify({
+                "link":t
+              });
+
+              let response = await fetch("{{url_for('post_get_tiktok_video')}}", { 
+                method: "POST",
+                body: bodyContent,
+                headers: headersList
+              });
+
+              let data = await response.json();
+              console.log(data);
+
+              for (let i=0;i<data["data"].length;i++) {
+                let option = document.createElement("option");
+                option.setAttribute('value', data["data"][i]);
+                // console.log(data["data"][i])
+
+                let optionText = document.createTextNode(data["data"][i]);
+                option.appendChild(optionText);
+
+                document.getElementById("tiktokSceneDropDown").appendChild(option);
+              }
+            }catch(e){
+              
+            }
+
+            loader.style.display = "none"
+            for(let i = 0;i<button.length;i++){
+              button[i].disabled = false
+            }
+          }
+        });
+
+        document.getElementById("youtubeVideoGetButton").addEventListener("click",()=>{
+          let t = document.getElementById("youtubeSceneDropDown").value
+          document.getElementById("youtubeVideoSection").innerHTML = ""
+          if(t!=undefined && t!=""){
+
+            loader.style.display = "block"
+            for(let i = 0;i<button.length;i++){
+              button[i].disabled = true
+            }
+            
+            document.getElementById("youtubeVideoSection").innerHTML = `<video controls>
+      <source src="${t}" type="video/mp4" />
+      <!-- <source src="rabbit320.webm" type="video/webm" /> -->
+      <p>
+        Your browser doesn't support HTML video. Here is a
+        <a href="The Strange Science of Why We Dream-Scene-002.mp4">link to the video</a> instead.
+      </p>
+    </video>`
+
+            loader.style.display = "none"
+            for(let i = 0;i<button.length;i++){
+              button[i].disabled = false
+            }
+          }
+
+        })
+
+        document.getElementById("instagramVideoGetButton").addEventListener("click",()=>{
+          let t = document.getElementById("instagramSceneDropDown").value
+          document.getElementById("instagramVideoSection").innerHTML = ""
+          if(t!=undefined && t!=""){
+
+            loader.style.display = "block"
+            for(let i = 0;i<button.length;i++){
+              button[i].disabled = true
+            }
+            
+            document.getElementById("instagramVideoSection").innerHTML = `<video controls>
+      <source src="${t}" type="video/mp4" />
+      <!-- <source src="rabbit320.webm" type="video/webm" /> -->
+      <p>
+        Your browser doesn't support HTML video. Here is a
+        <a href="The Strange Science of Why We Dream-Scene-002.mp4">link to the video</a> instead.
+      </p>
+    </video>`
+
+            loader.style.display = "none"
+            for(let i = 0;i<button.length;i++){
+              button[i].disabled = false
+            }
+          }
+
+        })
+
+        document.getElementById("tiktokVideoGetButton").addEventListener("click",()=>{
+          let t = document.getElementById("tiktokSceneDropDown").value
+          document.getElementById("tiktokVideoSection").innerHTML = ""
+          if(t!=undefined && t!=""){
+
+            loader.style.display = "block"
+            for(let i = 0;i<button.length;i++){
+              button[i].disabled = true
+            }
+            
+            document.getElementById("tiktokVideoSection").innerHTML = `<video controls>
+      <source src="${t}" type="video/mp4" />
+      <!-- <source src="rabbit320.webm" type="video/webm" /> -->
+      <p>
+        Your browser doesn't support HTML video. Here is a
+        <a href="The Strange Science of Why We Dream-Scene-002.mp4">link to the video</a> instead.
+      </p>
+    </video>`
+
+            loader.style.display = "none"
+            for(let i = 0;i<button.length;i++){
+              button[i].disabled = false
+            }
+          }
+
+        })
+
+      })
+
+
+    function myFunction() {
+      document.getElementById("demo").innerHTML = "<h2>I have changed!</h2>";
+    }
+    </script>
+
+  </body>
+</html>
